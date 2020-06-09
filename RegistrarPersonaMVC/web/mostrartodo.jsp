@@ -29,7 +29,7 @@
 				<td><c:out value="${listaTotal.apellidos}"/></td>
 				<td><c:out value="${listaTotal.nombres}"/></td>
 				
-				<td><a href="modificar.jsp?dui=<c:out value="${listaTotal.dui}"/>">Editar</a></td>
+				<td><a href="modificar-NI-MA.jsp?dui=<c:out value='${listaTotal.dui}'/>">Editar</a></td>
 				<td><a href="Eliminar?elimina&==<c:out value="${listaTotal.dui}"/>">Eliminar</a> </td>				
 			</tr>
 		</c:forEach>

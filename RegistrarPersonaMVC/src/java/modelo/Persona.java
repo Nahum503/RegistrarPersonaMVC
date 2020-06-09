@@ -23,6 +23,7 @@ public class Persona {
      Connection cnn;
     Statement state;
     ResultSet result;
+    PreparedStatement ps;
     
     public Persona() {
         try {
@@ -72,7 +73,18 @@ public class Persona {
         return person; //Independientemente encuentre o no registro retorna al objeto person
     }
     
-    
+     public void modificar(String nombre, String apellido, String dui) {
+        
+          try {
+
+           
+            ps = cnn.prepareStatement("UPDATE tb_persona SET apellidos_persona='"+apellido+"', nombre_persona='"+nombre+"' WHERE dui_persona='"+dui+"'");
+            ps.executeUpdate();
+         } catch (Exception ex) {
+             System.out.println("ERROR"+ex.getMessage());
+         }
+          
+      }
     
     /**
      * @return the dui
