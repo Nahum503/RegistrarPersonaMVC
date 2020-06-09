@@ -86,6 +86,16 @@ public class Persona {
           
       }
     
+     public void eliminar(String dui) throws SQLException{
+         try {
+             
+             ps = cnn.prepareStatement("delete from tb_persona where dui_persona='"+dui+"'");
+         ps.executeUpdate();
+         } catch (Exception ex) {
+             System.out.println("ERROR"+ex.getMessage());
+         }
+         
+     }
     /**
      * @return the dui
      */

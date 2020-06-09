@@ -7,6 +7,9 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +21,8 @@ import modelo.Persona;
  *
  * @author ADMIN
  */
-@WebServlet(name = "Modificar_NI_MA", urlPatterns = {"/Modificar_NI_MA"})
-public class Modificar_NI_MA extends HttpServlet {
+@WebServlet(name = "Eliminar", urlPatterns = {"/Eliminar_NI_MA"})
+public class Eliminar_NI_MA extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,13 +34,14 @@ public class Modificar_NI_MA extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
          PrintWriter out = response.getWriter();
          Persona person = new Persona();
-         if(request.getParameter("modificar")!=null){
-             person.modificar(request.getParameter("txtApellidos"), request.getParameter("txtNombres"), request.getParameter("txtDui"));
-             response.sendRedirect("modificar-NI-MA.jsp");
+         if(request.getParameter("eliminar")!=null){
+             person.eliminar(request.getParameter("txtDui"));
+             response.sendRedirect("elimina-NI-MA.jsp");
          }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +56,11 @@ public class Modificar_NI_MA extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Eliminar_NI_MA.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -66,7 +74,11 @@ public class Modificar_NI_MA extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Eliminar_NI_MA.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
